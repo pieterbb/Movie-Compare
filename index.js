@@ -1,15 +1,3 @@
-// TODO: Add arrow key nav on autocomplete widget
-// Do this inside of autocomplete, hook on root element.
-// Keydown, Keyup, walk over the list. Enter is select and insert
-
-// Moet er sowieso voor zorgen dat eventlister aan het goede evenemnt zit.
-// Wanneer is een keypress binnenin het elemenet? Hoe weet dat ding dat de keypress in de dropdown zit?
-// Dat is een goede vraag die nog wel wat oplossingsvermogen vergt.
-
-// Dus moet ik even googlen aan how to attach to dropdown.
-// Detect that the event bar is open, hook to general keypresses (you can override this now)
-// Activate this when bar is open, or just always activate it but ignore it if dropdown is not open
-
 console.log("Hi there! Let's get started");
 
 const autoCompleteConfig = {
@@ -48,6 +36,7 @@ createAutoComplete({
   },
 });
 
+// Set focus to first autocomplete input box on load
 document.querySelector("#left-autocomplete input").focus();
 
 createAutoComplete({
@@ -58,8 +47,6 @@ createAutoComplete({
     onMovieSelect(movie, document.querySelector("#right-summary"), "right");
   },
 });
-
-// Set focus to first input
 
 let leftMovie;
 let rightMovie;
@@ -100,11 +87,15 @@ const runComparison = () => {
     rightSideValue = parseInt(rightStat.dataset.value);
 
     if (rightSideValue > leftSideValue) {
+      rightStat.classList.add("is-primary");
+      rightStat.classList.remove("is-danger");
+      leftStat.classList.add("is-danger");
       leftStat.classList.remove("is-primary");
-      leftStat.classList.add("is-warning");
     } else {
+      rightStat.classList.add("is-danger");
       rightStat.classList.remove("is-primary");
-      rightStat.classList.add("is-warning");
+      leftStat.classList.add("is-primary");
+      leftStat.classList.remove("is-danger");
     }
   });
 
@@ -153,27 +144,27 @@ const movieTemplate = (movieDetail) => {
         </div>
       </div>
     </article>
-    <article data-value=${awards} class="notification is-primary">
+    <article data-value=${awards} class="notification">
       <p class="title">${movieDetail.Awards} </p>
       <p class="subtitle">Awards</p>
     </article>
 
-    <article data-value=${dollars} class="notification is-primary">
+    <article data-value=${dollars} class="notification">
     <p class="title">${movieDetail.BoxOffice} </p>
     <p class="subtitle">Box Office</p>
   </article>
 
-  <article data-value=${metascore} class="notification is-primary">
+  <article data-value=${metascore} class="notification">
   <p class="title">${movieDetail.Metascore} </p>
   <p class="subtitle">Metascore</p>
 </article>
 
-<article data-value=${imdbRating} class="notification is-primary">
+<article data-value=${imdbRating} class="notification">
 <p class="title">${movieDetail.imdbRating} </p>
 <p class="subtitle">IMDB  Rating</p>
 </article>
 
-<article data-value=${imdbVotes} class="notification is-primary">
+<article data-value=${imdbVotes} class="notification">
 <p class="title">${movieDetail.imdbVotes} </p>
 <p class="subtitle">IMDB Votes</p>
 </article>
