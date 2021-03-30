@@ -1,5 +1,3 @@
-console.log("Hi there! Let's get started");
-
 const autoCompleteConfig = {
   renderOption(movie) {
     const imgSrc = movie.Poster !== "N/A" ? movie.Poster : "";
@@ -99,8 +97,6 @@ const runComparison = () => {
     }
   });
 
-  console.log("time to run a comparison now...");
-
   // Hoe zou je deze comparison schijven.
   // Pak de root van link en rechts. Document query select if compare.
 };
@@ -126,8 +122,6 @@ const movieTemplate = (movieDetail) => {
       return prev + value;
     }
   }, 0);
-
-  console.log(awards);
 
   return `
     <article class="media">

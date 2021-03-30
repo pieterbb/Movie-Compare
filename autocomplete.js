@@ -89,7 +89,6 @@ const createAutoComplete = ({
   };
 
   const keypressHandler = (e) => {
-    console.log(e.key + " pressed...");
     if (dropdownItem) {
       switch (e.key) {
         case "ArrowDown":
